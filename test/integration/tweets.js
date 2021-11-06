@@ -1,4 +1,5 @@
 const TweetStorage = artifacts.require('TweetStorage')
+const TweetController = artifacts.require('TweetController')
 const utils = require('../utils')
 
 const { assertVMException } = utils
@@ -13,6 +14,14 @@ contract('tweets', () => {
     } catch (err) {
       assertVMException(err)
     }
+  })
+
+  it('can create tweet with controller', async () => {
+    const controller = await TweetController.deployed()
+
+    const tx = await controller.createTweet(1, 'Hello world!')
+
+    assert.isOk(tx)
   })
 
   it('can get tweet', async () => {
