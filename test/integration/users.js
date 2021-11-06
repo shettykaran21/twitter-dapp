@@ -1,4 +1,5 @@
 const UserStorage = artifacts.require('UserStorage')
+const UserController = artifacts.require('UserController')
 const utils = require('../utils')
 
 const { assertVMException } = utils
