@@ -9,9 +9,19 @@ contract UserStorage {
     bytes32 username;
   }
 
+  address ownerAddr;
+  address controllerAddr;
+
+  function setControllerAddr(address _controllerAddr) public {
+    require(msg.sender == ownerAddr);
+
+    controllerAddr = _controllerAddr;
+  }
+
   uint256 latestUserId = 0;
 
   function createUser(bytes32 _username) public returns (uint256) {
+    require(msg.sender == controllerAddr);
     latestUserId++;
 
     profiles[latestUserId] = Profile(latestUserId, _username);
