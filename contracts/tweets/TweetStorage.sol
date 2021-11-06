@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
 
-contract TweetStorage {
+import '../util/BaseStorage.sol';
+
+contract TweetStorage is BaseStorage {
   mapping(uint256 => Tweet) public tweets;
 
   struct Tweet {
@@ -15,6 +17,7 @@ contract TweetStorage {
 
   function createTweet(uint256 _userId, string memory _text)
     public
+    onlyController
     returns (uint256)
   {
     latestTweetId++;
