@@ -7,7 +7,7 @@ import '../../contracts/tweets/TweetStorage.sol';
 contract TestTweetStorage {
   TweetStorage tweetStorage;
 
-  constructor() public {
+  constructor() {
     tweetStorage = new TweetStorage();
     tweetStorage.setControllerAddr(address(this));
   }

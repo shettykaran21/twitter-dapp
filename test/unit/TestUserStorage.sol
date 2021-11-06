@@ -7,7 +7,7 @@ import '../../contracts/users/UserStorage.sol';
 contract TestUserStorage {
   UserStorage userStorage;
 
-  constructor() public {
+  constructor() {
     userStorage = new UserStorage();
     userStorage.setControllerAddr(address(this));
   }
