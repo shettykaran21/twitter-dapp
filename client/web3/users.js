@@ -1,10 +1,12 @@
-import { getInstance } from './provider'
-
-import UserStorage from './artifacts/UserStorage.json'
+import getWeb3 from './getWeb3'
+import getContract from './getContract'
+import UserStorage from './contracts/UserStorage.json'
 
 export const getUserInfo = async (userId) => {
-  const storage = await getInstance(UserStorage)
-  const profile = await storage.profiles.call(userId)
+  const web3 = await getWeb3()
+
+  const contract = await getContract(web3, UserStorage)
+  const profile = await contract.methods.profiles(userId).call()
 
   return profile
 }

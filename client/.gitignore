@@ -18,4 +18,4 @@ yarn-error.log*
 /.next
 
 # Build contracts
-web3/artifacts
+web3/contracts

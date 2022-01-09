@@ -3,8 +3,8 @@
   "version": "5.0.0",
   "private": true,
   "scripts": {
-    "dev": "yarn run artifacts && next dev",
-    "artifacts": "cp -r ../smart-contracts/build/contracts/ ./web3/artifacts",
+    "dev": "next dev",
+    "artifacts": "cp -r ../smart-contracts/build/contracts ./web3/",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -15,7 +15,6 @@
     "@emotion/server": "^11.4.0",
     "@emotion/styled": "^11.6.0",
     "@mui/material": "^5.2.7",
-    "@truffle/contract": "^4.4.2",
     "next": "^12.0.7",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
