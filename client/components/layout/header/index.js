@@ -24,7 +24,7 @@ const Header = () => {
             }}
           >
             <Logo />
-            <Box>Hi</Box>
+            <Box>shettykaran21</Box>
           </Box>
         </Toolbar>
       </AppBar>
