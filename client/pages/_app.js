@@ -6,6 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline'
 import { CacheProvider } from '@emotion/react'
 import theme from '../styles/theme'
 import createEmotionCache from '../styles/createEmotionCache'
+import { Box } from '@mui/material'
 
 const clientSideEmotionCache = createEmotionCache()
 
@@ -19,7 +20,16 @@ export default function MyApp(props) {
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Component {...pageProps} />
+        <Box
+          sx={{
+            backgroundColor: '#000000',
+            backgroundImage: 'linear-gradient(97deg, #000000 0%, #04619f 160%)',
+            color: '#eee',
+            minHeight: '100vh',
+          }}
+        >
+          <Component {...pageProps} />
+        </Box>
       </ThemeProvider>
     </CacheProvider>
   )

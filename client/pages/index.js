@@ -1,5 +1,8 @@
 import { createUser, getUserInfo } from '../web3/users'
 import { createTweet, getTweetInfo } from '../web3/tweets'
+import { Box } from '@mui/material'
+
+import Layout from '../components/layout'
 
 const HomePage = () => {
   const logUser = async () => {
@@ -22,14 +25,7 @@ const HomePage = () => {
     console.log(tx)
   }
 
-  return (
-    <div>
-      <button onClick={logUser}>Get user with ID 1</button>
-      <button onClick={createTestUser}>Create user</button>
-      <button onClick={logTweet}>Get tweet with ID 1</button>
-      <button onClick={createUserTweet}>Create tweet</button>
-    </div>
-  )
+  return <Layout></Layout>
 }
 
 export default HomePage
