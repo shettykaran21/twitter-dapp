@@ -10,7 +10,17 @@ contract('users', () => {
 
     try {
       const username = web3.utils.asciiToHex('karan')
-      await storage.createUser(username)
+      const firstName = web3.utils.asciiToHex('Karan')
+      const lastName = web3.utils.asciiToHex('Shetty')
+
+      const tx = await storage.createUser(
+        0x0,
+        username,
+        firstName,
+        lastName,
+        'I like web3',
+        'test@test.com'
+      )
       assert.fail()
     } catch (err) {
       assertVMException(err)
@@ -21,7 +31,16 @@ contract('users', () => {
     const controller = await UserController.deployed()
 
     const username = web3.utils.asciiToHex('karan')
-    const tx = await controller.createUser(username)
+    const firstName = web3.utils.asciiToHex('Karan')
+    const lastName = web3.utils.asciiToHex('Shetty')
+
+    const tx = await controller.createUser(
+      username,
+      firstName,
+      lastName,
+      'I like web3',
+      'test@test.com'
+    )
 
     assert.isOk(tx)
   })

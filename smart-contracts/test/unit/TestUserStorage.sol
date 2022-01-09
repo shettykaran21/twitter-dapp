@@ -16,7 +16,14 @@ contract TestUserStorage {
     uint256 _expectedId = 1;
 
     Assert.equal(
-      userStorage.createUser('karan'),
+      userStorage.createUser(
+        address(0),
+        'karan',
+        'Karan',
+        'Shetty',
+        'I like web3',
+        'test@test.com'
+      ),
       _expectedId,
       'Should create user with ID 1'
     );
