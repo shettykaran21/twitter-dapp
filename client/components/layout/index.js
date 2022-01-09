@@ -2,10 +2,10 @@ import { Box, Container } from '@mui/material'
 
 import Header from './header'
 
-const Layout = ({ children }) => {
+const Layout = ({ header = true, children }) => {
   return (
     <Box>
-      <Header />
+      {header && <Header />}
       <Container maxWidth="lg">{children}</Container>
     </Box>
   )

@@ -5,6 +5,7 @@ import { css } from '@emotion/react'
 import { Box, Typography, useTheme, lighten } from '@mui/material'
 
 import Button from '@components/button'
+import Link from '@components/link'
 
 const LandingScreen = () => {
   const theme = useTheme()
@@ -49,12 +50,14 @@ const LandingScreen = () => {
           textAlign: 'center',
         }}
       >
-        <Button>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <Image src="/images/metamask.svg" height={30} width={30} />
-            <Typography>Create an account</Typography>
-          </Box>
-        </Button>
+        <Link href="/signup">
+          <Button>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <Image src="/images/metamask.svg" height={30} width={30} />
+              <Typography>Create an account</Typography>
+            </Box>
+          </Button>
+        </Link>
         <Typography>
           Please note that creating an account on the Ethereum blockchain costs
           a small amount of Ether.
