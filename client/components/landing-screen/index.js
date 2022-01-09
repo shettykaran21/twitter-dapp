@@ -51,7 +51,7 @@ const LandingScreen = () => {
       >
         <Button>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <Image src="/images/icon.svg" height={30} width={30} />
+            <Image src="/images/metamask.svg" height={30} width={30} />
             <Typography>Create an account</Typography>
           </Box>
         </Button>
