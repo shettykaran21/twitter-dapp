@@ -22,6 +22,7 @@ const Logo = ({ center }) => {
           layout="fixed"
           height={50}
           width={160}
+          priority
         />
       </Link>
     </Box>

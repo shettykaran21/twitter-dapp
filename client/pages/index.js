@@ -1,7 +1,7 @@
 import { createUser, getUserInfo } from '@web3/users'
 import { createTweet, getTweetInfo } from '@web3/tweets'
-
 import Layout from '@components/layout'
+import LandingScreen from '@components/landing-screen'
 
 const HomePage = () => {
   const logUser = async () => {
@@ -24,7 +24,11 @@ const HomePage = () => {
     console.log(tx)
   }
 
-  return <Layout></Layout>
+  return (
+    <Layout>
+      <LandingScreen />
+    </Layout>
+  )
 }
 
 export default HomePage

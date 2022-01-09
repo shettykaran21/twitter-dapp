@@ -4,7 +4,8 @@ import { red } from '@mui/material/colors'
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#556cd6',
+      main: '#04619f',
+      900: '#0081d9',
     },
     secondary: {
       main: '#19857b',
@@ -12,6 +13,9 @@ const theme = createTheme({
     error: {
       main: red.A400,
     },
+  },
+  typography: {
+    fontFamily: 'Ubuntu',
   },
 })
 
