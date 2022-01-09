@@ -1,8 +1,7 @@
-import { createUser, getUserInfo } from '../web3/users'
-import { createTweet, getTweetInfo } from '../web3/tweets'
-import { Box } from '@mui/material'
+import { createUser, getUserInfo } from '@web3/users'
+import { createTweet, getTweetInfo } from '@web3/tweets'
 
-import Layout from '../components/layout'
+import Layout from '@components/layout'
 
 const HomePage = () => {
   const logUser = async () => {

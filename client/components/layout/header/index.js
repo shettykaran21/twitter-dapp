@@ -1,7 +1,7 @@
 import { AppBar, Box, Toolbar } from '@mui/material'
 import { styled } from '@mui/system'
 
-import Logo from '../../logo'
+import Logo from '@components/logo'
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar)
 

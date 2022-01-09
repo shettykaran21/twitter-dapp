@@ -1,8 +1,8 @@
 import * as React from 'react'
+import NextLink from 'next/link'
+import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
-import { useRouter } from 'next/router'
-import NextLink from 'next/link'
 import MuiLink from '@mui/material/Link'
 import { styled } from '@mui/material/styles'
 

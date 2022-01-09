@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { Box } from '@mui/material'
-import Link from '../link'
+
+import Link from '@components/link'
 
 const Logo = ({ center }) => {
   return (
