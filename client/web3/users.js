@@ -1,13 +1,13 @@
 import getWeb3 from './getWeb3'
-import getContract from './getContract'
+import getContractInstance from './getContractInstance'
 import UserStorage from './contracts/UserStorage.json'
 import UserController from './contracts/UserController.json'
 
 export const getUserInfo = async (userId) => {
   const web3 = await getWeb3()
 
-  const contract = await getContract(web3, UserStorage)
-  const { id, username } = await contract.methods.profiles(userId).call()
+  const storage = await getContractInstance(web3, UserStorage)
+  const { id, username } = await storage.methods.profiles(userId).call()
 
   return {
     id: parseInt(id),
@@ -18,7 +18,7 @@ export const getUserInfo = async (userId) => {
 export const createUser = async (username) => {
   const web3 = await getWeb3()
 
-  const controller = await getContract(web3, UserController)
+  const controller = await getContractInstance(web3, UserController)
 
   try {
     const addresses = await web3.eth.getAccounts()
