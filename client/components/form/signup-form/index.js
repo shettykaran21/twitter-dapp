@@ -61,7 +61,7 @@ const SignupForm = () => {
   })
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} title="Sign Up">
       <FormInput
         label="First Name"
         type="text"
