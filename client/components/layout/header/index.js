@@ -1,19 +1,28 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { AppBar, Box, Toolbar } from '@mui/material'
 import { styled } from '@mui/system'
 
 import Logo from '@components/logo'
+import Nav from '../nav'
 import { getLoggedInUserId, getUserInfo } from '@web3/users'
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar)
 
 const Header = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [userInfo, setUserInfo] = useState({})
+
   useEffect(async () => {
     const userId = await getLoggedInUserId()
-    const userInfo = await getUserInfo(userId)
 
-    console.log('Logged in as:', userInfo)
-  })
+    try {
+      const userInfo = await getUserInfo(userId)
+      setUserInfo(userInfo)
+      setIsLoggedIn(true)
+    } catch (err) {
+      console.log(err)
+    }
+  }, [])
 
   return (
     <>
@@ -33,7 +42,7 @@ const Header = () => {
             }}
           >
             <Logo />
-            <Box>shettykaran21</Box>
+            {isLoggedIn && <Nav userInfo={userInfo} />}
           </Box>
         </Toolbar>
       </AppBar>
