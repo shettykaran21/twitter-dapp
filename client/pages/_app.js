@@ -23,9 +23,7 @@ export default function MyApp(props) {
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Wrapper>
-          <Component {...pageProps} />
-        </Wrapper>
+        <Component {...pageProps} />
       </ThemeProvider>
     </CacheProvider>
   )

@@ -10,7 +10,6 @@ const Wrapper = ({ children }) => {
         backgroundImage: `linear-gradient(97deg, #000000 0%, ${theme.palette.primary.main} 160%)`,
         minHeight: '100vh',
         color: '#eee',
-        fontFamily: "'Ubuntu', 'Lato', 'sans-serif'",
       }}
     >
       {children}

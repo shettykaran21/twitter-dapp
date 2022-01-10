@@ -4,7 +4,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: inherit;
+  font-family: Ubuntu, Lato, sans-serif;
   color: #eee;
 }
 
