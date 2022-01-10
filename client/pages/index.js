@@ -1,14 +1,14 @@
 import Layout from '@components/layout'
 import LandingScreen from '@components/landing-screen'
-import Wrapper from '@components/wrapper'
+import BackgroundWrapper from '@components/background-wrapper'
 
 const HomePage = () => {
   return (
-    <Wrapper>
+    <BackgroundWrapper>
       <Layout>
         <LandingScreen />
       </Layout>
-    </Wrapper>
+    </BackgroundWrapper>
   )
 }
 

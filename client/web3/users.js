@@ -79,3 +79,18 @@ export const getLoggedInUserId = async () => {
     console.error(err)
   }
 }
+
+export const getUserIdFromUsername = async (username) => {
+  const web3 = await getWeb3()
+
+  try {
+    const storage = await getContractInstance(web3, UserStorage)
+    const userId = await storage.methods
+      .usernames(web3.utils.asciiToHex(username))
+      .call()
+
+    return userId
+  } catch (err) {
+    console.log(err)
+  }
+}

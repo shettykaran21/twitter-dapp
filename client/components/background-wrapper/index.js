@@ -1,6 +1,6 @@
 import { Box, useTheme } from '@mui/material'
 
-const Wrapper = ({ children }) => {
+const BackgroundWrapper = ({ children }) => {
   const theme = useTheme()
 
   return (
@@ -17,4 +17,4 @@ const Wrapper = ({ children }) => {
   )
 }
 
-export default Wrapper
+export default BackgroundWrapper

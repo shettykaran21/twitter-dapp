@@ -1,14 +1,14 @@
 import SignupForm from '@components/form/signup-form'
 import Layout from '@components/layout'
-import Wrapper from '@components/wrapper'
+import BackgroundWrapper from '@components/background-wrapper'
 
 const SignupPage = () => {
   return (
-    <Wrapper>
+    <BackgroundWrapper>
       <Layout header={false}>
         <SignupForm />
       </Layout>
-    </Wrapper>
+    </BackgroundWrapper>
   )
 }
 
