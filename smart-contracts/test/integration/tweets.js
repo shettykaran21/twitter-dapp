@@ -1,10 +1,27 @@
 const TweetStorage = artifacts.require('TweetStorage')
 const TweetController = artifacts.require('TweetController')
+const UserController = artifacts.require('UserController')
 const utils = require('../utils')
 
 const { assertVMException } = utils
 
 contract('tweets', () => {
+  before(async () => {
+    const userController = await UserController.deployed()
+
+    const username = web3.utils.asciiToHex('karan')
+    const firstName = web3.utils.asciiToHex('Karan')
+    const lastName = web3.utils.asciiToHex('Shetty')
+
+    await userController.createUser(
+      username,
+      firstName,
+      lastName,
+      'example@example.com',
+      'I am Karan Shetty'
+    )
+  })
+
   it("can't create tweet without controller", async () => {
     const storage = await TweetStorage.deployed()
 
@@ -19,7 +36,7 @@ contract('tweets', () => {
   it('can create tweet with controller', async () => {
     const controller = await TweetController.deployed()
 
-    const tx = await controller.createTweet(1, 'Hello world!')
+    const tx = await controller.createTweet('Hello world!')
 
     assert.isOk(tx)
   })
