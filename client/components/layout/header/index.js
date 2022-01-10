@@ -1,11 +1,20 @@
+import { useEffect } from 'react'
 import { AppBar, Box, Toolbar } from '@mui/material'
 import { styled } from '@mui/system'
 
 import Logo from '@components/logo'
+import { getLoggedInUserId, getUserInfo } from '@web3/users'
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar)
 
 const Header = () => {
+  useEffect(async () => {
+    const userId = await getLoggedInUserId()
+    const userInfo = await getUserInfo(userId)
+
+    console.log('Logged in as:', userInfo)
+  })
+
   return (
     <>
       <AppBar

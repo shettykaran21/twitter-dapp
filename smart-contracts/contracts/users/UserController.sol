@@ -10,8 +10,8 @@ contract UserController is BaseController {
     bytes32 _username,
     bytes32 _firstName,
     bytes32 _lastName,
-    string memory _bio,
-    string memory _gravatarEmail
+    string memory _gravatarEmail,
+    string memory _bio
   ) public returns (uint256) {
     ContractManager _manager = ContractManager(managerAddr);
 
@@ -27,8 +27,8 @@ contract UserController is BaseController {
         _username,
         _firstName,
         _lastName,
-        _bio,
-        _gravatarEmail
+        _gravatarEmail,
+        _bio
       );
   }
 }

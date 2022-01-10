@@ -35,18 +35,8 @@ const SignupForm = () => {
       setLoading(true)
 
       try {
-        const { username, firstName, lastName, gravatarEmail, bio } = values
-
-        const res = await createUser(
-          username,
-          firstName,
-          lastName,
-          gravatarEmail,
-          bio
-        )
-
-        console.log(res)
-        // resetForm({})
+        await createUser(values)
+        resetForm({})
       } catch (err) {
         setStatus(err.response.data.message)
       }

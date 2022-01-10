@@ -13,8 +13,8 @@ contract UserStorage is BaseStorage {
     bytes32 username;
     bytes32 firstName;
     bytes32 lastName;
-    string bio;
     string gravatarEmail;
+    string bio;
   }
 
   uint256 latestUserId = 0;
@@ -24,8 +24,8 @@ contract UserStorage is BaseStorage {
     bytes32 _username,
     bytes32 _firstName,
     bytes32 _lastName,
-    string memory _bio,
-    string memory _gravatarEmail
+    string memory _gravatarEmail,
+    string memory _bio
   ) public onlyController returns (uint256) {
     latestUserId++;
 
@@ -34,8 +34,8 @@ contract UserStorage is BaseStorage {
       _username,
       _firstName,
       _lastName,
-      _bio,
-      _gravatarEmail
+      _gravatarEmail,
+      _bio
     );
 
     addresses[_address] = latestUserId;

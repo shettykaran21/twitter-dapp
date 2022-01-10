@@ -6,16 +6,36 @@ import UserController from './contracts/UserController.json'
 export const getUserInfo = async (userId) => {
   const web3 = await getWeb3()
 
-  const storage = await getContractInstance(web3, UserStorage)
-  const { id, username } = await storage.methods.profiles(userId).call()
+  try {
+    const storage = await getContractInstance(web3, UserStorage)
+    const { id, username, firstName, lastName, gravatarEmail, bio } =
+      await storage.methods.profiles(userId).call()
 
-  return {
-    id: parseInt(id),
-    username: web3.utils.hexToAscii(username).replace(/\u0000/g, ''),
+    if (!parseInt(id)) {
+      const error = new Error('User not found')
+      throw error
+    }
+
+    return {
+      id: parseInt(id),
+      username: web3.utils.hexToAscii(username).replace(/\u0000/g, ''),
+      firstName: web3.utils.hexToAscii(firstName).replace(/\u0000/g, ''),
+      lastName: web3.utils.hexToAscii(lastName).replace(/\u0000/g, ''),
+      gravatarEmail,
+      bio,
+    }
+  } catch (err) {
+    console.log(err)
   }
 }
 
-export const createUser = async (...params) => {
+export const createUser = async ({
+  username,
+  firstName,
+  lastName,
+  gravatarEmail,
+  bio,
+}) => {
   const web3 = await getWeb3()
 
   const controller = await getContractInstance(web3, UserController)
@@ -23,23 +43,38 @@ export const createUser = async (...params) => {
   try {
     const addresses = await web3.eth.getAccounts()
 
-    const [username, firstName, lastName, gravatarEmail, bio] = params
-
-    console.log(params)
-
     const result = await controller.methods
       .createUser(
         web3.utils.asciiToHex(username),
         web3.utils.asciiToHex(firstName),
         web3.utils.asciiToHex(lastName),
-        gravatarEmail,
-        bio
+        bio,
+        gravatarEmail
       )
       .send({
         from: addresses[0],
       })
 
     return result
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const getLoggedInUserId = async () => {
+  const web3 = await getWeb3()
+
+  try {
+    const addresses = await web3.eth.getAccounts()
+
+    console.log(addresses)
+
+    if (!addresses) return
+
+    const storage = await getContractInstance(web3, UserStorage)
+    const userId = await storage.methods.addresses(addresses[0]).call()
+
+    return parseInt(userId)
   } catch (err) {
     console.error(err)
   }
