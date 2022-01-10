@@ -1,0 +1,9 @@
+{
+  "name": "smart-contracts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "fund-metamask": "truffle exec ./fundMetamask.js"
+  },
+  "license": "MIT"
+}
