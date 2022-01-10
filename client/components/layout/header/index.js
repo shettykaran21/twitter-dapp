@@ -17,16 +17,20 @@ const Header = ({ dark }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [userInfo, setUserInfo] = useState({})
 
-  useEffect(async () => {
-    const userId = await getLoggedInUserId()
+  useEffect(() => {
+    const fetchData = async () => {
+      const userId = await getLoggedInUserId()
 
-    try {
-      const userInfo = await getUserInfo(userId)
-      setUserInfo(userInfo)
-      setIsLoggedIn(true)
-    } catch (err) {
-      console.log(err)
+      try {
+        const userInfo = await getUserInfo(userId)
+        setUserInfo(userInfo)
+        setIsLoggedIn(true)
+      } catch (err) {
+        console.log(err)
+      }
     }
+
+    fetchData()
   }, [])
 
   const styles = {

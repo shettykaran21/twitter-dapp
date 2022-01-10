@@ -4,27 +4,36 @@ import Head from 'next/head'
 
 import { getUserIdFromUsername, getUserInfo } from '@web3/users'
 import Layout from '@components/layout'
+import UserDetails from '@components/user-details'
 
 const UserProfilePage = () => {
-  const [userData, setUserData] = useState({})
+  const [userProfile, setUserProfile] = useState(null)
 
   const router = useRouter()
 
-  const username = router.query.slug
+  useEffect(() => {
+    const fetchData = async () => {
+      if (router.query.slug) {
+        const userId = await getUserIdFromUsername(router.query.slug)
+        const profile = await getUserInfo(userId)
 
-  useEffect(async () => {
-    const userId = await getUserIdFromUsername(username)
-    const profile = await getUserInfo(userId)
-
-    setUserData(profile)
-  }, [])
+        setUserProfile(profile)
+      }
+    }
+    fetchData()
+  }, [router.query.slug])
 
   return (
     <>
       <Head>
-        <title> Twitter DApp {userData && `| ${username}`}</title>
+        <title>
+          {' '}
+          Twitter DApp {userProfile && `| ${userProfile.username}`}
+        </title>
       </Head>
-      <Layout dark={true}>Hello World</Layout>
+      <Layout dark={true}>
+        {userProfile && <UserDetails userData={userProfile} />}
+      </Layout>
     </>
   )
 }

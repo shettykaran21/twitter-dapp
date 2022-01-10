@@ -48,8 +48,8 @@ export const createUser = async ({
         web3.utils.asciiToHex(username),
         web3.utils.asciiToHex(firstName),
         web3.utils.asciiToHex(lastName),
-        bio,
-        gravatarEmail
+        gravatarEmail,
+        bio
       )
       .send({
         from: addresses[0],
@@ -66,8 +66,6 @@ export const getLoggedInUserId = async () => {
 
   try {
     const addresses = await web3.eth.getAccounts()
-
-    console.log(addresses)
 
     if (!addresses) return
 
