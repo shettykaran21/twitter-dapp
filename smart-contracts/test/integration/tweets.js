@@ -52,4 +52,16 @@ contract('tweets', () => {
     assert.equal(text, 'Hello world!')
     assert.equal(parseInt(userId), 1)
   })
+
+  it('can get all tweets IDs from user', async () => {
+    const storage = await TweetStorage.deployed()
+
+    const userId = 1
+    const ids = await storage.getTweetIdsFromUser(userId)
+
+    const expectedTweetId = 1
+
+    assert.isOk(Array.isArray(ids))
+    assert.equal(ids[0], expectedTweetId)
+  })
 })
