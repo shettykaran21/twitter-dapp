@@ -5,6 +5,7 @@ import Head from 'next/head'
 import { getUserIdFromUsername, getUserInfo } from '@web3/users'
 import Layout from '@components/layout'
 import UserDetails from '@components/user-details'
+import { Box } from '@mui/material'
 
 const UserProfilePage = () => {
   const [userProfile, setUserProfile] = useState(null)
@@ -31,8 +32,8 @@ const UserProfilePage = () => {
           Twitter DApp {userProfile && `| ${userProfile.username}`}
         </title>
       </Head>
-      <Layout dark={true}>
-        {userProfile && <UserDetails userData={userProfile} />}
+      <Layout dark={true} maxWidth="md">
+        <Box>{userProfile && <UserDetails userData={userProfile} />}</Box>
       </Layout>
     </>
   )

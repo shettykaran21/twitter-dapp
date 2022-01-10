@@ -2,11 +2,11 @@ import { Box, Container } from '@mui/material'
 
 import Header from './header'
 
-const Layout = ({ header = true, children, dark = false }) => {
+const Layout = ({ header = true, dark = false, maxWidth = 'lg', children }) => {
   return (
     <Box>
       {header && <Header dark={dark} />}
-      <Container maxWidth="lg">{children}</Container>
+      <Container maxWidth={maxWidth}>{children}</Container>
     </Box>
   )
 }

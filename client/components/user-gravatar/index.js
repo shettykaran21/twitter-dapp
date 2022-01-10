@@ -3,13 +3,13 @@
 import { css } from '@emotion/react'
 import Gravatar from 'react-gravatar'
 
-const UserGravatar = ({ email }) => {
+const UserGravatar = ({ email, size = 40 }) => {
   return (
     <Gravatar
       email={email}
-      size={40}
+      size={size}
       css={css`
-        border-radius: 20px;
+        border-radius: 50%;
       `}
     />
   )
