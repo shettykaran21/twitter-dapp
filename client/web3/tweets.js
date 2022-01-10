@@ -11,9 +11,11 @@ export const createTweet = async (text) => {
   try {
     const addresses = await web3.eth.getAccounts()
 
-    const result = await controller.methods.createTweet(1, text).send({
+    const result = await controller.methods.createTweet(text).send({
       from: addresses[0],
     })
+
+    console.log(result)
 
     return result
   } catch (err) {

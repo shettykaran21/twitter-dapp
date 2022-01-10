@@ -5,8 +5,9 @@ import { Box, Typography } from '@mui/material'
 
 import FormTextArea from '@components/form/form-textarea'
 import Button from '@components/button'
+import { createTweet } from '@web3/tweets'
 
-const TweetForm = () => {
+const TweetForm = ({ handleClose }) => {
   const [loading, setLoading] = useState(false)
 
   const {
@@ -25,8 +26,10 @@ const TweetForm = () => {
       setLoading(true)
 
       try {
-        console.log(values)
+        const { text } = values
+        await createTweet(text)
         resetForm({})
+        handleClose()
       } catch (err) {
         setStatus(err.response.data.message)
       }

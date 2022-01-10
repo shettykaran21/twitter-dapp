@@ -1,10 +1,11 @@
-import Button from '@components/button'
-import Link from '@components/link'
-import TweetForm from '@components/tweet-form'
-import UserGravatar from '@components/user-gravatar'
-import { Box, Modal, Typography } from '@mui/material'
 import { useState } from 'react'
 import { IoMdCreate } from 'react-icons/io'
+import { Box, Modal, Typography } from '@mui/material'
+
+import Button from '@components/button'
+import Link from '@components/link'
+import TweetForm from '@components/form/tweet-form'
+import UserGravatar from '@components/user-gravatar'
 
 const Nav = ({ userInfo }) => {
   const { firstName, lastName, username, gravatarEmail } = userInfo
@@ -30,7 +31,7 @@ const Nav = ({ userInfo }) => {
             borderRadius: '10px',
           }}
         >
-          <TweetForm />
+          <TweetForm handleClose={handleClose} />
         </Box>
       </Modal>
       <Box
