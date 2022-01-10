@@ -28,8 +28,8 @@ const Button = ({ children, isLoading, secondary, ...other }) => {
     `,
 
     secondary: css`
-      padding: 0.5rem;
-      background-color: #fff;
+      padding: 0.5rem 1rem;
+      background-color: #eee;
       color: ${theme.palette.primary.main};
     `,
 

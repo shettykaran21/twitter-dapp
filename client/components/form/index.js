@@ -25,13 +25,15 @@ const Form = ({ width = '30rem', title, children, ...props }) => {
 
   return (
     <Box sx={styles.container}>
-      <Typography
-        variant="h1"
-        component="h1"
-        sx={{ fontSize: '2rem', fontWeight: '500', marginTop: '1.5rem' }}
-      >
-        {title}
-      </Typography>
+      {title && (
+        <Typography
+          variant="h1"
+          component="h1"
+          sx={{ fontSize: '2rem', fontWeight: '500', marginTop: '1.5rem' }}
+        >
+          {title}
+        </Typography>
+      )}
       <form css={styles.form} {...props}>
         {children}
       </form>

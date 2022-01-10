@@ -42,7 +42,7 @@ const Header = () => {
             }}
           >
             <Logo />
-            {isLoggedIn && <Nav userInfo={userInfo} />}
+            {isLoggedIn && userInfo && <Nav userInfo={userInfo} />}
           </Box>
         </Toolbar>
       </AppBar>

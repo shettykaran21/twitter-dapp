@@ -6,6 +6,7 @@ const FormTextArea = ({
   hasError = false,
   errorMsg,
   variant = 'standard',
+  minRows = 3,
   ...props
 }) => {
   return (
@@ -18,7 +19,7 @@ const FormTextArea = ({
       helperText={hasError && errorMsg}
       margin="normal"
       multiline
-      minRows={3}
+      minRows={minRows}
       {...props}
     />
   )
