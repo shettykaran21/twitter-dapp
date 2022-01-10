@@ -11,9 +11,11 @@ import {
   getTweetInfo,
   loadTweetsFromTweetPromises,
 } from '@web3/tweets'
+import TweetsList from '@components/tweets-list'
 
 const UserProfilePage = () => {
   const [userProfile, setUserProfile] = useState(null)
+  const [userTweets, setUserTweets] = useState([])
 
   const router = useRouter()
 
@@ -31,7 +33,7 @@ const UserProfilePage = () => {
 
     const tweets = await loadTweetsFromTweetPromises(tweetPromises)
 
-    console.log(tweets)
+    setUserTweets(tweets)
   }
 
   useEffect(() => {
@@ -55,8 +57,9 @@ const UserProfilePage = () => {
           Twitter DApp {userProfile && `| ${userProfile.username}`}
         </title>
       </Head>
-      <Layout dark={true} maxWidth="md">
+      <Layout dark={true} maxWidth="sm">
         <Box>{userProfile && <UserDetails userData={userProfile} />}</Box>
+        <TweetsList tweets={userTweets} />
       </Layout>
     </>
   )
