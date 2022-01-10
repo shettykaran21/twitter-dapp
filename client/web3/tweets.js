@@ -38,3 +38,12 @@ export const getTweetInfo = async (tweetId) => {
     postedAt: parseInt(postedAt),
   }
 }
+
+export const getTweetIdsFromUser = async (userId) => {
+  const web3 = await getWeb3()
+
+  const storage = await getContractInstance(web3, TweetStorage)
+  const tweetIds = await storage.methods.getTweetIdsFromUser(userId).call()
+
+  return tweetIds.map((tweetId) => parseInt(tweetId))
+}

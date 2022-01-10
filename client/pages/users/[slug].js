@@ -1,26 +1,45 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
+import { Box } from '@mui/material'
 
 import { getUserIdFromUsername, getUserInfo } from '@web3/users'
 import Layout from '@components/layout'
 import UserDetails from '@components/user-details'
-import { Box } from '@mui/material'
+import { getTweetIdsFromUser, getTweetInfo } from '@web3/tweets'
 
 const UserProfilePage = () => {
   const [userProfile, setUserProfile] = useState(null)
 
   const router = useRouter()
 
+  const loadProfile = async (userId) => {
+    const profile = await getUserInfo(userId)
+    setUserProfile(profile)
+  }
+
+  const loadTweets = async (userId) => {
+    const tweetIds = await getTweetIdsFromUser(userId)
+
+    const tweetPromises = tweetIds.map((tweetId) => {
+      return getTweetInfo(tweetId)
+    })
+
+    const tweets = await Promise.all(tweetPromises)
+
+    console.log(tweets)
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       if (router.query.slug) {
         const userId = await getUserIdFromUsername(router.query.slug)
-        const profile = await getUserInfo(userId)
 
-        setUserProfile(profile)
+        loadProfile(userId)
+        loadTweets(userId)
       }
     }
+
     fetchData()
   }, [router.query.slug])
 
