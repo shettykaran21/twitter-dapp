@@ -12,6 +12,7 @@ import {
   loadTweetsFromTweetPromises,
 } from '@web3/tweets'
 import TweetsList from '@components/tweets-list'
+import BackgroundWrapper from '@components/background-wrapper'
 
 const UserProfilePage = () => {
   const [userProfile, setUserProfile] = useState(null)
@@ -57,10 +58,12 @@ const UserProfilePage = () => {
           Twitter DApp {userProfile && `| ${userProfile.username}`}
         </title>
       </Head>
-      <Layout dark={true} maxWidth="sm">
-        <Box>{userProfile && <UserDetails userData={userProfile} />}</Box>
-        <TweetsList tweets={userTweets} />
-      </Layout>
+      <BackgroundWrapper>
+        <Layout dark maxWidth="sm">
+          <Box>{userProfile && <UserDetails userData={userProfile} />}</Box>
+          <TweetsList tweets={userTweets} />
+        </Layout>
+      </BackgroundWrapper>
     </>
   )
 }

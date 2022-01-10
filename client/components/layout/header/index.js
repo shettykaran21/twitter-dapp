@@ -44,6 +44,8 @@ const Header = ({ dark }) => {
         #000000 0%,
         ${theme.palette.primary.main} 160%
       );
+      box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,
+        rgba(0, 0, 0, 0.24) 0px 1px 2px;
     `,
     transparent: css`
       background-color: transparent;

@@ -1,20 +1,34 @@
+import Moment from 'react-moment'
+import {
+  Box,
+  Card,
+  CardContent,
+  lighten,
+  Typography,
+  useTheme,
+} from '@mui/material'
+
 import Link from '@components/link'
 import UserGravatar from '@components/user-gravatar'
-import { Box, Card, CardContent, Typography } from '@mui/material'
-import Moment from 'react-moment'
 
 const TweetCard = ({ tweet }) => {
   const { text, user, postedAt } = tweet
   const { username, gravatarEmail } = user
+
+  const theme = useTheme()
 
   return (
     <Card
       sx={{
         minWidth: 275,
         boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+        backgroundColor: lighten(theme.palette.primary.main, 0.9),
+        py: '1.25rem',
+        px: '1rem',
+        borderRadius: '16px',
       }}
     >
-      <CardContent sx={{ display: 'flex', gap: '1rem' }}>
+      <CardContent sx={{ display: 'flex', gap: '1.5rem' }}>
         <UserGravatar email={gravatarEmail} size={50} />
         <Box
           sx={{
