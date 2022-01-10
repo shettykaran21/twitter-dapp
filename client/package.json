@@ -3,7 +3,7 @@
   "version": "5.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "yarn run artifacts && next dev",
     "artifacts": "cp -r ../smart-contracts/build/contracts ./web3/",
     "build": "next build",
     "start": "next start",

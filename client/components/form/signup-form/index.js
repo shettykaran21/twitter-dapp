@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { Box, Typography } from '@mui/material'
@@ -7,8 +8,11 @@ import FormInput from '@components/form/form-input'
 import FormTextArea from '@components/form/form-textarea'
 import Button from '@components/button'
 import Form from '@components/form'
+import { createUser } from '@web3/users'
 
 const SignupForm = () => {
+  const [loading, setLoading] = useState(false)
+
   const {
     values,
     errors,
@@ -23,17 +27,30 @@ const SignupForm = () => {
       firstName: '',
       lastName: '',
       username: '',
-      email: '',
+      gravatarEmail: '',
       bio: '',
     },
 
     onSubmit: async (values, { setStatus, resetForm }) => {
+      setLoading(true)
+
       try {
-        console.log(values)
+        const { username, firstName, lastName, gravatarEmail, bio } = values
+
+        const res = await createUser(
+          username,
+          firstName,
+          lastName,
+          gravatarEmail,
+          bio
+        )
+
+        console.log(res)
         // resetForm({})
       } catch (err) {
         setStatus(err.response.data.message)
       }
+      setLoading(false)
     },
 
     validationSchema: Yup.object({
@@ -50,13 +67,15 @@ const SignupForm = () => {
         .min(5, 'Min 5 characters long')
         .max(16, 'Max 16 characters long')
         .matches(/^[a-zA-Z0-9_-]+$/, 'Contains invalid characters'),
-      email: Yup.string()
+      gravatarEmail: Yup.string()
         .required('Required')
         .matches(
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-          'Invalid email id'
+          'Invalid email'
         ),
-      bio: Yup.string().max(300, 'Max 300 characters long'),
+      bio: Yup.string()
+        .required('Required')
+        .max(300, 'Max 300 characters long'),
     }),
   })
 
@@ -96,15 +115,15 @@ const SignupForm = () => {
         errorMsg={errors.username && errors.username}
       />
       <FormInput
-        label="Email"
+        label="Gravatar Email"
         type="email"
-        name="email"
+        name="gravatarEmail"
         autoComplete="off"
-        value={values.email}
+        value={values.gravatarEmail}
         onChange={handleChange}
         onBlur={handleBlur}
-        hasError={touched.email && errors.email}
-        errorMsg={errors.email && errors.email}
+        hasError={touched.gravatarEmail && errors.gravatarEmail}
+        errorMsg={errors.gravatarEmail && errors.gravatarEmail}
       />
       <FormTextArea
         label="Bio"
@@ -124,7 +143,12 @@ const SignupForm = () => {
         </Typography>
       )}
       <Box sx={{ marginTop: '2rem' }}>
-        <Button type="submit" disabled={isSubmitting} style={{ width: '100%' }}>
+        <Button
+          type="submit"
+          isLoading={loading}
+          disabled={isSubmitting}
+          style={{ width: '100%' }}
+        >
           Sign Up
         </Button>
       </Box>

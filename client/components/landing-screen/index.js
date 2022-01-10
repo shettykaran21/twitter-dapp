@@ -24,7 +24,7 @@ const LandingScreen = () => {
         <Typography
           variant="h1"
           component="h1"
-          sx={{ fontWeight: '700', fontSize: '5rem' }}
+          sx={{ fontWeight: '500', fontSize: '5rem' }}
         >
           A{' '}
           <span

@@ -40,7 +40,7 @@ const Button = ({ children, isLoading, secondary, ...other }) => {
         content: '';
         position: absolute;
         opacity: 0.3;
-        left: 0.5rem;
+        left: 1rem;
         width: 1rem;
         height: 1rem;
         border: 2px solid currentcolor;
@@ -49,7 +49,7 @@ const Button = ({ children, isLoading, secondary, ...other }) => {
       &:after {
         content: '';
         position: absolute;
-        left: 0.5rem;
+        left: 1rem;
         width: 1rem;
         height: 1rem;
         border: 2px solid transparent;

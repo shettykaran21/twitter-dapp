@@ -15,7 +15,7 @@ export const getUserInfo = async (userId) => {
   }
 }
 
-export const createUser = async (username) => {
+export const createUser = async (...params) => {
   const web3 = await getWeb3()
 
   const controller = await getContractInstance(web3, UserController)
@@ -23,8 +23,18 @@ export const createUser = async (username) => {
   try {
     const addresses = await web3.eth.getAccounts()
 
+    const [username, firstName, lastName, gravatarEmail, bio] = params
+
+    console.log(params)
+
     const result = await controller.methods
-      .createUser(web3.utils.asciiToHex(username))
+      .createUser(
+        web3.utils.asciiToHex(username),
+        web3.utils.asciiToHex(firstName),
+        web3.utils.asciiToHex(lastName),
+        gravatarEmail,
+        bio
+      )
       .send({
         from: addresses[0],
       })
