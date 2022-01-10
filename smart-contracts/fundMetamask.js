@@ -1,4 +1,4 @@
-const receiver = '0x9FE9e3FaFB9550EcAA6De554BE58669901F5f770'
+const receiver = '0xC44A6F0E57E1E0FDbF9C07C745753195536AD30C'
 const amount = web3.utils.toWei('5', 'ether')
 
 module.exports = async function (callback) {

@@ -43,4 +43,8 @@ contract TweetStorage is BaseStorage {
   {
     return userTweetIds[_userId];
   }
+
+  function getNumTweets() public view returns (uint256 _numTweets) {
+    return tweetIds.length;
+  }
 }

@@ -59,10 +59,29 @@ export const loadTweetsFromTweetPromises = async (tweetPromises) => {
 
   const users = await Promise.all(userPromises)
 
-  return tweets.map((tweet, index) => {
-    return {
-      user: users[index],
-      ...tweet,
-    }
-  })
+  return tweets
+    .map((tweet, index) => {
+      return {
+        user: users[index],
+        ...tweet,
+      }
+    })
+    .reverse()
+}
+
+export const getAllTweetIds = async () => {
+  const web3 = await getWeb3()
+
+  const storage = await getContractInstance(web3, TweetStorage)
+
+  const numTweets = await storage.methods.getNumTweets().call()
+
+  const tweetIdPromises = []
+  for (let i = 0; i < numTweets; i++) {
+    tweetIdPromises.push(storage.methods.tweetIds(i).call())
+  }
+
+  const tweetIds = await Promise.all(tweetIdPromises)
+
+  return tweetIds
 }
