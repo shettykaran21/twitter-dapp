@@ -6,7 +6,11 @@ import { Box } from '@mui/material'
 import { getUserIdFromUsername, getUserInfo } from '@web3/users'
 import Layout from '@components/layout'
 import UserDetails from '@components/user-details'
-import { getTweetIdsFromUser, getTweetInfo } from '@web3/tweets'
+import {
+  getTweetIdsFromUser,
+  getTweetInfo,
+  loadTweetsFromTweetPromises,
+} from '@web3/tweets'
 
 const UserProfilePage = () => {
   const [userProfile, setUserProfile] = useState(null)
@@ -25,7 +29,7 @@ const UserProfilePage = () => {
       return getTweetInfo(tweetId)
     })
 
-    const tweets = await Promise.all(tweetPromises)
+    const tweets = await loadTweetsFromTweetPromises(tweetPromises)
 
     console.log(tweets)
   }

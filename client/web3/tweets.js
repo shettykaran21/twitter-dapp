@@ -2,6 +2,7 @@ import getWeb3 from './getWeb3'
 import getContractInstance from './getContractInstance'
 import TweetStorage from './contracts/TweetStorage.json'
 import TweetController from './contracts/TweetController.json'
+import { getUserInfo } from './users'
 
 export const createTweet = async (text) => {
   const web3 = await getWeb3()
@@ -46,4 +47,22 @@ export const getTweetIdsFromUser = async (userId) => {
   const tweetIds = await storage.methods.getTweetIdsFromUser(userId).call()
 
   return tweetIds.map((tweetId) => parseInt(tweetId))
+}
+
+export const loadTweetsFromTweetPromises = async (tweetPromises) => {
+  const tweets = await Promise.all(tweetPromises)
+
+  const userPromises = tweets.map((tweet) => {
+    const { userId } = tweet
+    return getUserInfo(userId)
+  })
+
+  const users = await Promise.all(userPromises)
+
+  return tweets.map((tweet, index) => {
+    return {
+      user: users[index],
+      ...tweet,
+    }
+  })
 }
