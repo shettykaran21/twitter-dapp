@@ -52,7 +52,7 @@ const Header = ({ dark }) => {
         {({ css, cx }) => (
           <AppBar
             position="fixed"
-            sx={cx(
+            css={cx(
               css(styles.header),
               dark ? css(styles.dark) : css(styles.transparent)
             )}
