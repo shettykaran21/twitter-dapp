@@ -39,6 +39,12 @@ const LandingScreen = () => {
           </span>{' '}
           Twitter Built on Ethereum
         </Typography>
+        <Image
+          src="/images/ethereum-logo.svg"
+          width={100}
+          height={100}
+          alt="Ethereum Logo"
+        />
       </Box>
       <Box
         sx={{
@@ -53,7 +59,12 @@ const LandingScreen = () => {
         <Link href="/signup">
           <Button>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <Image src="/images/metamask.svg" height={30} width={30} />
+              <Image
+                src="/images/metamask.svg"
+                height={30}
+                width={30}
+                alt="Metamask Logo"
+              />
               <Typography>Create an account</Typography>
             </Box>
           </Button>
