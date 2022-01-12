@@ -8,6 +8,7 @@ import { styled } from '@mui/system'
 import Logo from '@components/logo'
 import Nav from '../nav'
 import { getLoggedInUserId, getUserInfo } from '@web3/users'
+import CustomAlert from '@components/alert'
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar)
 
@@ -16,6 +17,7 @@ const Header = ({ dark }) => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [userInfo, setUserInfo] = useState({})
+  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,7 +28,7 @@ const Header = ({ dark }) => {
         setUserInfo(userInfo)
         setIsLoggedIn(true)
       } catch (err) {
-        console.log(err)
+        setIsOpen(true)
       }
     }
 
@@ -54,6 +56,13 @@ const Header = ({ dark }) => {
 
   return (
     <>
+      <CustomAlert
+        title={'User Not Found'}
+        alertMsg={'Please create an account'}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        severity="error"
+      />
       <ClassNames>
         {({ css, cx }) => (
           <AppBar

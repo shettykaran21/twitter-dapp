@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useRouter } from 'next/router'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { Box, Typography } from '@mui/material'
@@ -9,9 +10,13 @@ import FormTextArea from '@components/form/form-textarea'
 import Button from '@components/button'
 import Form from '@components/form'
 import { createUser } from '@web3/users'
+import CustomAlert from '@components/alert'
 
 const SignupForm = () => {
   const [loading, setLoading] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+
+  const router = useRouter()
 
   const {
     values,
@@ -37,6 +42,11 @@ const SignupForm = () => {
       try {
         await createUser(values)
         resetForm({})
+        setIsOpen(true)
+
+        setTimeout(() => {
+          router.push('/feed')
+        }, 3000)
       } catch (err) {
         setStatus(err.response.data.message)
       }
@@ -70,79 +80,89 @@ const SignupForm = () => {
   })
 
   return (
-    <Form onSubmit={handleSubmit} title="Sign Up">
-      <FormInput
-        label="First Name"
-        type="text"
-        name="firstName"
-        autoComplete="off"
-        value={values.firstName}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        hasError={touched.firstName && errors.firstName}
-        errorMsg={errors.firstName && errors.firstName}
+    <>
+      <CustomAlert
+        title={'Account created successfully'}
+        alertMsg={'Redirecting...'}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
       />
-      <FormInput
-        label="Last Name"
-        type="text"
-        name="lastName"
-        autoComplete="off"
-        value={values.lastName}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        hasError={touched.lastName && errors.lastName}
-        errorMsg={errors.lastName && errors.lastName}
-      />
-      <FormInput
-        label="Username"
-        type="text"
-        name="username"
-        autoComplete="off"
-        value={values.username}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        hasError={touched.username && errors.username}
-        errorMsg={errors.username && errors.username}
-      />
-      <FormInput
-        label="Gravatar Email"
-        type="email"
-        name="gravatarEmail"
-        autoComplete="off"
-        value={values.gravatarEmail}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        hasError={touched.gravatarEmail && errors.gravatarEmail}
-        errorMsg={errors.gravatarEmail && errors.gravatarEmail}
-      />
-      <FormTextArea
-        label="Bio"
-        type="text"
-        name="bio"
-        autoComplete="off"
-        value={values.bio}
-        variant="outlined"
-        onChange={handleChange}
-        onBlur={handleBlur}
-        hasError={touched.bio && errors.bio}
-        errorMsg={errors.bio && errors.bio}
-      />
-      {status && (
-        <Typography sx={{ color: lighten('#ff0000', 0.5), marginTop: '1rem' }}>
-          {status}
-        </Typography>
-      )}
-      <Box sx={{ marginTop: '2rem' }}>
-        <Button
-          type="submit"
-          isLoading={loading}
-          disabled={isSubmitting}
-          style={{ width: '100%' }}
-        >
-          Sign Up
-        </Button>
-      </Box>
-    </Form>
+      <Form onSubmit={handleSubmit} title="Sign Up">
+        <FormInput
+          label="First Name"
+          type="text"
+          name="firstName"
+          autoComplete="off"
+          value={values.firstName}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          hasError={touched.firstName && errors.firstName}
+          errorMsg={errors.firstName && errors.firstName}
+        />
+        <FormInput
+          label="Last Name"
+          type="text"
+          name="lastName"
+          autoComplete="off"
+          value={values.lastName}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          hasError={touched.lastName && errors.lastName}
+          errorMsg={errors.lastName && errors.lastName}
+        />
+        <FormInput
+          label="Username"
+          type="text"
+          name="username"
+          autoComplete="off"
+          value={values.username}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          hasError={touched.username && errors.username}
+          errorMsg={errors.username && errors.username}
+        />
+        <FormInput
+          label="Gravatar Email"
+          type="email"
+          name="gravatarEmail"
+          autoComplete="off"
+          value={values.gravatarEmail}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          hasError={touched.gravatarEmail && errors.gravatarEmail}
+          errorMsg={errors.gravatarEmail && errors.gravatarEmail}
+        />
+        <FormTextArea
+          label="Bio"
+          type="text"
+          name="bio"
+          autoComplete="off"
+          value={values.bio}
+          variant="outlined"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          hasError={touched.bio && errors.bio}
+          errorMsg={errors.bio && errors.bio}
+        />
+        {status && (
+          <Typography
+            sx={{ color: lighten('#ff0000', 0.5), marginTop: '1rem' }}
+          >
+            {status}
+          </Typography>
+        )}
+        <Box sx={{ marginTop: '2rem' }}>
+          <Button
+            type="submit"
+            isLoading={loading}
+            disabled={isSubmitting}
+            style={{ width: '100%' }}
+          >
+            Sign Up
+          </Button>
+        </Box>
+      </Form>
+    </>
   )
 }
 

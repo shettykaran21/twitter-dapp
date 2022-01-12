@@ -16,8 +16,6 @@ export const createTweet = async (text) => {
       from: addresses[0],
     })
 
-    console.log(result)
-
     return result
   } catch (err) {
     console.error(err)
