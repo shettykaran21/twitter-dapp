@@ -44,6 +44,9 @@ const Nav = ({ userInfo }) => {
             <IoMdCreate />
           </Box>
         </Button>
+        <Link href={`/feed`}>
+          <Typography sx={{ color: '#eee' }}>Feed</Typography>
+        </Link>
         <Link href={`/users/${username}`}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <Typography sx={{ color: '#eee' }}>
