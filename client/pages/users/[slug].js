@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 
 import { getUserIdFromUsername, getUserInfo } from '@web3/users'
 import Layout from '@components/layout'
@@ -13,10 +13,12 @@ import {
 } from '@web3/tweets'
 import TweetsList from '@components/tweets-list'
 import BackgroundWrapper from '@components/background-wrapper'
+import Loader from '@components/loader'
 
 const UserProfilePage = () => {
   const [userProfile, setUserProfile] = useState(null)
   const [userTweets, setUserTweets] = useState([])
+  const [loading, setLoading] = useState(false)
 
   const router = useRouter()
 
@@ -26,6 +28,8 @@ const UserProfilePage = () => {
   }
 
   const loadTweets = async (userId) => {
+    setLoading(true)
+
     const tweetIds = await getTweetIdsFromUser(userId)
 
     const tweetPromises = tweetIds.map((tweetId) => {
@@ -34,12 +38,13 @@ const UserProfilePage = () => {
 
     const tweets = await loadTweetsFromTweetPromises(tweetPromises)
 
+    setLoading(false)
     setUserTweets(tweets)
   }
 
   useEffect(() => {
     const fetchData = async () => {
-      if (router.query.slug) {
+      if (router.query.slug !== undefined) {
         const userId = await getUserIdFromUsername(router.query.slug)
 
         loadProfile(userId)
@@ -61,7 +66,15 @@ const UserProfilePage = () => {
       <BackgroundWrapper>
         <Layout dark maxWidth="sm">
           <Box>{userProfile && <UserDetails userData={userProfile} />}</Box>
-          <TweetsList tweets={userTweets} />
+          {loading && <Loader />}
+          {!loading && userTweets.length === 0 && (
+            <Typography sx={{ textAlign: 'center', marginTop: '1rem' }}>
+              No tweets yet 😞
+            </Typography>
+          )}
+          {!loading && userTweets.length > 0 && (
+            <TweetsList tweets={userTweets} />
+          )}
         </Layout>
       </BackgroundWrapper>
     </>
