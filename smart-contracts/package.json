@@ -5,5 +5,8 @@
   "scripts": {
     "fund-metamask": "truffle exec ./fundMetamask.js"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@truffle/hdwallet-provider": "^2.0.1"
+  }
 }
