@@ -1,5 +1,4 @@
 const HDWalletProvider = require('@truffle/hdwallet-provider')
-const { projectId, mnemonic } = require('./secrets.json')
 
 module.exports = {
   networks: {
@@ -31,8 +30,8 @@ module.exports = {
     goerli: {
       provider: () =>
         new HDWalletProvider(
-          mnemonic,
-          `https://eth-goerli.alchemyapi.io/v2/${projectId}`
+          process.env.mnemonic,
+          `https://eth-goerli.alchemyapi.io/v2/${process.env.projectId}`
         ),
       network_id: 5,
     },
