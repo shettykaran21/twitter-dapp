@@ -28,5 +28,5 @@ yarn-error.log*
 # vercel
 .vercel
 
-# metamask secret code
-.secret
+# Deployment
+secrets.json
