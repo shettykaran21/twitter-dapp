@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "yarn run artifacts && next dev",
     "artifacts": "cp -r ../smart-contracts/build/contracts ./web3/",
-    "build": "npm install truffle && cd ../smart-contracts && truffle compile && cd .. && yarn run artifacts && next build",
+    "build": "npm install truffle @truffle/hdwallet-provider &&  cd ../smart-contracts && truffle compile && cd .. && yarn run artifacts && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -15,7 +15,6 @@
     "@emotion/server": "^11.4.0",
     "@emotion/styled": "^11.6.0",
     "@mui/material": "^5.2.7",
-    "@truffle/hdwallet-provider": "^2.0.1",
     "clsx": "^1.1.1",
     "formik": "^2.2.9",
     "moment": "^2.29.1",
