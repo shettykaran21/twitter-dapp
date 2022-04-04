@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "yarn run artifacts && next dev",
     "artifacts": "cp -r ../smart-contracts/build/contracts ./web3/",
-    "build": "yarn run artifacts && next build",
+    "build": "npm install -g truffle && truffle compile && yarn run artifacts && next build",
     "start": "next start",
     "lint": "next lint"
   },
