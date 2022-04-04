@@ -1,0 +1,8 @@
+{
+  "name": "twitter-dapp-2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:shettykaran21/twitter-dapp.git",
+  "author": "Karan Shetty <shettykaran2110@gmail.com>",
+  "license": "MIT"
+}
