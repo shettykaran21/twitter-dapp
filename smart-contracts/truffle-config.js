@@ -1,4 +1,5 @@
 const HDWalletProvider = require('@truffle/hdwallet-provider')
+require('dotenv').config()
 
 module.exports = {
   networks: {
@@ -30,8 +31,8 @@ module.exports = {
     goerli: {
       provider: () =>
         new HDWalletProvider(
-          process.env.mnemonic,
-          `https://eth-goerli.alchemyapi.io/v2/${process.env.projectId}`
+          process.env.MNEMONIC,
+          `https://eth-goerli.alchemyapi.io/v2/${process.env.PROJECT_ID}`
         ),
       network_id: 5,
     },
