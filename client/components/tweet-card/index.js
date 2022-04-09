@@ -49,7 +49,9 @@ const TweetCard = ({ tweet }) => {
             </Typography>
           </Box>
           <Box>
-            <Typography color="text.secondary">{text}</Typography>
+            <Typography color="text.secondary" sx={{ whiteSpace: 'pre-line' }}>
+              {text}
+            </Typography>
           </Box>
         </Box>
       </CardContent>
